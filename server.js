@@ -1,12 +1,13 @@
 // const io = require('socket.io')(5000)
+const app = express();
 const cors = require("cors")
-const path = require('path')
+const path = require("path")
 const baseUrl = "https://chat-app-28.herokuapp.com"
 
 
 const io = require("socket.io")(5000, {
     cors: {
-        origin: baseUrl
+        origin: { baseUrl }
     }
 });
 

@@ -14,7 +14,7 @@ export function SocketProvider({ id, children }) {
 
     useEffect(() => {
         const newSocket = io(
-            baseUrl,
+            { baseUrl },
             { query: { id } }
         )
         setSocket(newSocket)
