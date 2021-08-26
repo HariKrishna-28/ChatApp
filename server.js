@@ -1,18 +1,15 @@
-// const io = require('socket.io')(5000)
 const express = require("express")
+// const io = require('socket.io')(5000)
 const cors = require("cors")
-const path = require('path')
-const baseUrl = "https://chat-app-28.herokuapp.com"
+const app = express()
+const path = require("path")
 
 
-const app = express();
-
-const io = require("socket.io")(process.env.PORT || 5000, {
+const io = require("socket.io")(5000, {
     cors: {
-        origin: { baseUrl }
+        origin: "http://localhost:3000"
     }
 });
-
 
 io.on('connection', socket => {
     const id = socket.handshake.query.id
@@ -29,8 +26,6 @@ io.on('connection', socket => {
     })
 })
 
-
-// heroku config
 app.use(express.static(path.join(__dirname, "/client/build")));
 
 app.get('*', (req, res) => {
