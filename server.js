@@ -3,11 +3,13 @@ const express = require("express")
 const cors = require("cors")
 const app = express()
 const path = require("path")
+const baseUrl = "https://chat-application-28.herokuapp.com"
 
 
-const io = require("socket.io")(5000, {
+const io = require("socket.io")(5000 || { baseUrl }, {
     cors: {
-        origin: "http://localhost:3000"
+        origin: ({ baseUrl } || "http://localhost:3000"),
+        // origin: "https://chat-application-28.herokuapp.com",
     }
 });
 
@@ -26,6 +28,7 @@ io.on('connection', socket => {
     })
 })
 
+// heroku configuration files
 app.use(express.static(path.join(__dirname, "/client/build")));
 
 app.get('*', (req, res) => {

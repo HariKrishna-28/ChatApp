@@ -1,6 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import io from 'socket.io-client'
 
+// heroku project url
+const baseUrl = "https://chat-application-28.herokuapp.com"
+
 const SocketContext = React.createContext()
 
 export function useSocket() {
@@ -12,7 +15,8 @@ export function SocketProvider({ id, children }) {
 
     useEffect(() => {
         const newSocket = io(
-            'http://localhost:5000',
+            // { baseUrl },
+            'http://localhost:5000' || { baseUrl },
             { query: { id } }
         )
         setSocket(newSocket)
