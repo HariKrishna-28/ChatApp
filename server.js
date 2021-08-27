@@ -1,3 +1,4 @@
+// require("dotenv").config
 const express = require("express")
 // const io = require('socket.io')(5000)
 const cors = require("cors")
@@ -6,7 +7,7 @@ const path = require("path")
 const baseUrl = "https://chat-application-28.herokuapp.com"
 
 
-const io = require("socket.io")(5000 || { baseUrl }, {
+const io = require("socket.io")(5000 || process.env.PORT, {
     cors: {
         origin: ({ baseUrl } || "http://localhost:3000"),
         // origin: "https://chat-application-28.herokuapp.com",
