@@ -16,7 +16,7 @@ export function SocketProvider({ id, children }) {
     useEffect(() => {
         const newSocket = io(
             // { baseUrl },
-            process.env.PORT || 'http://localhost:5000',
+            process.env.PORT,
             { query: { id } }
         )
         setSocket(newSocket)
